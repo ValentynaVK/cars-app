@@ -6,7 +6,13 @@ const Header = () => {
     <div className={style.container}>
       <header>
         <a href="/">
-          <img src={logosrc} alt="logo" width="236" height="58" />
+          <img
+            src={logosrc}
+            alt="logo"
+            className={style.logo}
+            width="236"
+            height="58"
+          />
         </a>
       </header>
     </div>

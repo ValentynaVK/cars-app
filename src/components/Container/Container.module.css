@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  box-sizing: border-box;
   max-width: 860px;
   padding: 28px;
   margin: 0 auto;

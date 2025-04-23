@@ -1,6 +1,9 @@
-.header {
+.container {
   display: flex;
-  width: 860px;
-  padding: 6px 624px 6px 0px;
-  align-items: center;
+  max-width: 860px;
+  padding: 28px;
+  margin: 0 auto;
+  border-radius: 8px;
+
+  background: #fff;
 }

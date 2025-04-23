@@ -1,6 +1,7 @@
 import cars from "../../data/cars";
 import Container from "../Container/Container";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 function App() {
   return (
@@ -8,10 +9,10 @@ function App() {
       <Header />
       <Container>
         <main>
-          <p>В наявності {cars.length}</p>
+          <p>В наявності {cars.length} автомобілів</p>
         </main>
-        <footer></footer>
       </Container>
+      <Footer />
     </div>
   );
 }

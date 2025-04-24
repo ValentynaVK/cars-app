@@ -1,0 +1,27 @@
+.main {
+  padding: 28px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+.title {
+  color: #1d2b3c;
+  font-size: 24px;
+  line-height: 100%;
+  margin-bottom: 24px;
+}
+
+.carsAvailable {
+  display: flex;
+  gap: 24px;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.label {
+  width: 130px;
+  color: #727b86;
+}
+
+.available {
+  color: #1d2b3c;
+}

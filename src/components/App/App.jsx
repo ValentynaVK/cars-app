@@ -1,19 +1,15 @@
-import cars from "../../data/cars";
 import Container from "../Container/Container";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import Card from "../Card/Card";
 
 function App() {
   return (
-    <div>
+    <Container>
       <Header />
-      <Container>
-        <main>
-          <p>В наявності {cars.length} автомобілів</p>
-        </main>
-      </Container>
+      <Card />
       <Footer />
-    </div>
+    </Container>
   );
 }
 

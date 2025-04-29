@@ -1,0 +1,34 @@
+.card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 804px;
+  box-sizing: border-box;
+  padding: 20px 16px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #240a38;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.priceBlock {
+  text-align: right;
+}
+
+.price {
+  color: #1d2b3c;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.available {
+  color: #56b447;
+  text-align: right;
+  font-size: 14px;
+  line-height: 142.857%;
+}

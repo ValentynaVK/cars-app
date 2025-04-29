@@ -1,13 +1,15 @@
 .card {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   max-width: 804px;
   box-sizing: border-box;
   padding: 20px 16px;
   margin-bottom: 12px;
   border-radius: 6px;
   border: 1px solid #240a38;
+}
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .info {
@@ -28,7 +30,11 @@
 
 .available {
   color: #56b447;
-  text-align: right;
   font-size: 14px;
   line-height: 142.857%;
+}
+.cardBody {
+  border-top: 1px solid rgba(36, 10, 56, 0.1);
+  padding-top: 16px;
+  margin-top: 16px;
 }

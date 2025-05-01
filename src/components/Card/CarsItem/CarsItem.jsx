@@ -1,6 +1,9 @@
 import style from "./CarsItem.module.css";
+import { useState } from "react";
 
 const CarsItem = ({ car }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const {
     brand,
     model,
@@ -26,6 +29,10 @@ const CarsItem = ({ car }) => {
         <div className={style.priceBlock}>
           <p className={style.price}> {price} USD </p>
           <p className={style.available}> В наявності</p>
+
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? "Згорнути" : "Детальніше"}
+          </button>
         </div>
       </div>
       <div className={style.cardBody}>

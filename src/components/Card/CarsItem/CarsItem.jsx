@@ -13,6 +13,7 @@ const CarsItem = ({ car, isOpen, onToggle }) => {
 
   const totalRating = ratings.reduce((acc, num) => acc + num);
   const averageRating = totalRating / ratings.length;
+  const colors = colorOption || ["#FFF", "#DADADA", "#000"];
 
   return (
     <div className={style.card}>
@@ -44,9 +45,28 @@ const CarsItem = ({ car, isOpen, onToggle }) => {
             style={{ overflow: "hidden", marginTop: "10px" }}
           >
             <div className={style.cardBody}>
-              <p>Двигун {engine}</p>
-              <p>Коробка передач {transmission} </p>
-              <p>Доступні кольори {colorOption} </p>
+              <div className={style.row}>
+                <p className={style.label}>Двигун </p>
+                <p className={style.value}>{engine}</p>
+              </div>
+              <div className={style.row}>
+                <p className={style.label}>Коробка передач </p>
+                <p className={style.value}>{transmission}</p>
+              </div>
+              <div className={style.row}>
+                <p className={style.label}>Доступні кольори </p>
+
+                <div className={style.colorWrapper}>
+                  {colors.map((color, index) => (
+                    <span
+                      key={index}
+                      className={style.colorDot}
+                      style={{ backgroundColor: color }}
+                      title={color}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
         )}

@@ -34,7 +34,39 @@
   line-height: 142.857%;
 }
 .cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   border-top: 1px solid rgba(36, 10, 56, 0.1);
   padding-top: 16px;
   margin-top: 16px;
+}
+.row {
+  max-width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  color: #727b86;
+  font-size: 14px;
+  line-height: 142.857%;
+}
+
+.value {
+  color: #1d2b3c;
+  font-size: 14px;
+  line-height: 142.857%;
+}
+.colorWrapper {
+  display: flex;
+  gap: 4px;
+}
+
+.colorDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px #000 solid;
 }

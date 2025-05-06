@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 .info {
@@ -42,13 +43,13 @@
   margin-top: 16px;
 }
 .row {
-  max-width: 250px;
   display: flex;
-  justify-content: space-between;
+  gap: 28px;
   align-items: center;
 }
 
 .label {
+  width: 144px;
   color: #727b86;
   font-size: 14px;
   line-height: 142.857%;

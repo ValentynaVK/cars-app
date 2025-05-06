@@ -7,17 +7,17 @@ const CarsItem = ({ car, isOpen, onToggle }) => {
     model,
     year,
     price,
-    dealer: { name, location, ratings },
-    features: { engine, transmission, colorOption },
+    dealer: { name, ratings },
+    features: { engine, transmission, colorOptions },
   } = car;
 
   const totalRating = ratings.reduce((acc, num) => acc + num);
   const averageRating = totalRating / ratings.length;
-  const colors = colorOption || ["#FFF", "#DADADA", "#000"];
+  const colors = colorOptions;
 
   return (
     <div className={style.card}>
-      <div className={style.cardHeader}>
+      <div className={style.cardHeader} onClick={onToggle}>
         <div className={style.info}>
           <h2>
             {brand} {model}, {year} рік
@@ -29,10 +29,6 @@ const CarsItem = ({ car, isOpen, onToggle }) => {
         <div className={style.priceBlock}>
           <p className={style.price}> {price} USD </p>
           <p className={style.available}> В наявності</p>
-
-          <button onClick={onToggle} className={style.toggleButton}>
-            {isOpen ? "Згорнути" : "Детальніше"}
-          </button>
         </div>
       </div>
       <AnimatePresence>

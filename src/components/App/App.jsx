@@ -7,6 +7,7 @@ function App() {
   return (
     <Container>
       <Header />
+
       <Card />
       <Footer />
     </Container>

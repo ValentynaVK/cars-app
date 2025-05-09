@@ -2,6 +2,7 @@ import style from "./Card.module.css";
 import cars from "../../data/cars";
 import CarsList from "./CarsList/CarsList";
 import { useState } from "react";
+import Filters from "../Filters/Filters";
 
 const Card = () => {
   const [sortedCars, setSortedCars] = useState(cars);
@@ -27,6 +28,7 @@ const Card = () => {
         <p className={style.label}>В наявності</p>
         <p className={style.available}>{cars.length} автомобілів</p>
       </div>
+      <Filters setCars={setSortedCars} />
       <div className={style.sortBtnsWrapper}>
         <button
           className={style.sortBtn}

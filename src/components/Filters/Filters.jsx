@@ -1,6 +1,7 @@
 import Input from "../Input/Input";
 import { useState } from "react";
 import cars from "../../data/cars";
+import style from "./Filters.module.css";
 
 const Filters = ({ setCars }) => {
   const [brandValue, setBrandValue] = useState("");
@@ -10,9 +11,22 @@ const Filters = ({ setCars }) => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [color, setColor] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (minYear && maxYear && parseInt(minYear) > parseInt(maxYear)) {
+      setError("Неправильний діапазон дат.");
+      return;
+    }
+
+    if (minPrice && maxPrice && parseInt(minPrice) > parseInt(maxPrice)) {
+      setError("Неправильний діапазон цін.");
+      return;
+    }
+    setError("");
+
     const filtered = cars.filter((car) => {
       const brandMatch = car.brand
         .toLowerCase()
@@ -45,12 +59,14 @@ const Filters = ({ setCars }) => {
     setMinPrice("");
     setMaxPrice("");
     setColor("");
+    setError("");
     setCars(cars);
   };
   return (
     <div>
-      <h2>Фільтри</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className={style.headerText}>Фільтри</h2>
+      {error && <p className={style.errorMessage}>{error}</p>}
+      <form onSubmit={handleSubmit} className={style.filtersForm}>
         <Input
           name="brand"
           onChange={(event) => {

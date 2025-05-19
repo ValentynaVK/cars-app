@@ -1,0 +1,13 @@
+.headerText {
+  color: #1d2b3c;
+  font-family: Manrope;
+  font-size: 18px;
+  line-height: 133.333%;
+}
+.errorMessage {
+  color: #d20505;
+  font-family: Roboto;
+  font-size: 10px;
+}
+.filtersForm {
+}

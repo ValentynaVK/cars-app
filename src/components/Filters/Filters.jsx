@@ -11,21 +11,23 @@ const Filters = ({ setCars }) => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [color, setColor] = useState("");
-  const [error, setError] = useState("");
+  const [priceError, setPriceError] = useState("");
+  const [yearError, setYearError] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (minYear && maxYear && parseInt(minYear) > parseInt(maxYear)) {
-      setError("Неправильний діапазон дат.");
+      setYearError("Неправильний діапазон дат.");
       return;
     }
 
     if (minPrice && maxPrice && parseInt(minPrice) > parseInt(maxPrice)) {
-      setError("Неправильний діапазон цін.");
+      setPriceError("Неправильний діапазон цін.");
       return;
     }
-    setError("");
+    setPriceError("");
+    setYearError("");
 
     const filtered = cars.filter((car) => {
       const brandMatch = car.brand
@@ -59,13 +61,14 @@ const Filters = ({ setCars }) => {
     setMinPrice("");
     setMaxPrice("");
     setColor("");
-    setError("");
+    setPriceError("");
+    setYearError("");
     setCars(cars);
   };
   return (
     <div>
       <h2 className={style.headerText}>Фільтри</h2>
-      {error && <p className={style.errorMessage}>{error}</p>}
+
       <form onSubmit={handleSubmit} className={style.filtersForm}>
         <div className={style.inputGroup}>
           <label className={style.label}>Ім'я</label>
@@ -123,6 +126,7 @@ const Filters = ({ setCars }) => {
               id="maxPriceInput"
             />
           </div>
+          {priceError && <p className={style.errorMessage}>{priceError}</p>}
         </div>
 
         <div className={style.rangeGroup}>
@@ -152,17 +156,18 @@ const Filters = ({ setCars }) => {
               id="maxYearInput"
             />
           </div>
+          {yearError && <p className={style.errorMessage}>{yearError}</p>}
         </div>
-        <div className={style.inputGroup}>
+        <div className={style.inputColor}>
           <label className={style.label}>Колір</label>
           <Input
-            className={style.input}
+            className={style.colorBtn}
             name="color"
             onChange={(event) => {
               setColor(event.target.value);
             }}
             value={color}
-            type="text"
+            type="radio"
             id="colorInput"
           />
         </div>

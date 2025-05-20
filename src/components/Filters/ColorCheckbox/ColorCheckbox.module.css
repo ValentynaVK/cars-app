@@ -1,0 +1,22 @@
+.checkbox input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.checkbox input:checked + .checkIcon {
+  display: flex;
+}
+.checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  position: relative;
+}
+.checkIcon {
+  display: none;
+  position: absolute;
+  inset: 0;
+}

@@ -2,6 +2,13 @@
   padding-top: 12px;
 }
 
+.formFields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
 .headerText {
   color: #1d2b3c;
   font-family: Manrope;
@@ -14,10 +21,6 @@
   font-weight: 400;
 }
 .filtersForm {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 13px;
-  padding: 16px 20px;
 }
 .inputGroup {
   display: flex;
@@ -37,7 +40,8 @@
 }
 .input {
   display: flex;
-  padding: 16px 20px;
+  height: 57px;
+  padding: 0 20px;
   align-items: center;
   gap: 10px;
   flex: 1 0 0;
@@ -50,7 +54,8 @@
 .rangeInput {
   display: flex;
   width: 80px;
-  padding: 16px 20px;
+  height: 57px;
+  padding: 0 20px;
   align-items: center;
   gap: 10px;
   align-self: stretch;
@@ -65,8 +70,7 @@
 }
 .buttons {
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
   align-items: center;
   padding: 12px 0px 24px 0px;
   gap: 24px;
@@ -115,5 +119,12 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  margin: 0;
+}
+
+.colorCheckboxList {
+  display: flex;
+  height: 57px;
+  align-items: center;
   margin: 0;
 }

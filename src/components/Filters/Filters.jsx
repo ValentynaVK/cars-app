@@ -2,6 +2,7 @@ import Input from "../Input/Input";
 import { useState } from "react";
 import cars from "../../data/cars";
 import style from "./Filters.module.css";
+import ColorCheckbox from "./ColorCheckbox/ColorCheckbox";
 
 const Filters = ({ setCars }) => {
   const [brandValue, setBrandValue] = useState("");
@@ -70,106 +71,101 @@ const Filters = ({ setCars }) => {
       <h2 className={style.headerText}>Фільтри</h2>
 
       <form onSubmit={handleSubmit} className={style.filtersForm}>
-        <div className={style.inputGroup}>
-          <label className={style.label}>Ім'я</label>
-          <Input
-            className={style.input}
-            name="brand"
-            placeholder="Ваше ім'я"
-            onChange={(event) => {
-              setBrandValue(event.target.value);
-            }}
-            value={brandValue}
-            type="text"
-            id="brandInput"
-          />
-        </div>
-        <div className={style.inputGroup}>
-          <label className={style.label}>Модель</label>
-          <Input
-            className={style.input}
-            name="model"
-            placeholder="Camry"
-            onChange={(event) => {
-              setModelValue(event.target.value);
-            }}
-            value={modelValue}
-            type="text"
-            id="modelInput"
-          />
-        </div>
-
-        <div className={style.rangeGroup}>
-          <label className={style.label}>Ціна</label>
-          <div className={style.doubleInput}>
+        <div className={style.formFields}>
+          <div className={style.inputGroup}>
+            <label className={style.label}>Ім'я</label>
             <Input
-              className={style.rangeInput}
-              name="minPrice"
-              placeholder="Від"
+              className={style.input}
+              name="brand"
+              placeholder="Ваше ім'я"
               onChange={(event) => {
-                setMinPrice(event.target.value);
+                setBrandValue(event.target.value);
               }}
-              value={minPrice}
-              type="number"
-              id="minPriceInput"
-            />
-            <span>-</span>
-            <Input
-              className={style.rangeInput}
-              name="maxPrice"
-              placeholder="До"
-              onChange={(event) => {
-                setMaxPrice(event.target.value);
-              }}
-              value={maxPrice}
-              type="number"
-              id="maxPriceInput"
+              value={brandValue}
+              type="text"
+              id="brandInput"
             />
           </div>
-          {priceError && <p className={style.errorMessage}>{priceError}</p>}
-        </div>
-
-        <div className={style.rangeGroup}>
-          <label className={style.label}> Рік</label>
-          <div className={style.doubleInput}>
+          <div className={style.inputGroup}>
+            <label className={style.label}>Модель</label>
             <Input
-              className={style.rangeInput}
-              name="minYear"
-              placeholder="Від"
+              className={style.input}
+              name="model"
+              placeholder="Camry"
               onChange={(event) => {
-                setMinYear(event.target.value);
+                setModelValue(event.target.value);
               }}
-              value={minYear}
-              type="number"
-              id="minYearInput"
-            />
-            <span>-</span>
-            <Input
-              className={style.rangeInput}
-              name="maxYear"
-              placeholder="До"
-              onChange={(event) => {
-                setMaxYear(event.target.value);
-              }}
-              value={maxYear}
-              type="number"
-              id="maxYearInput"
+              value={modelValue}
+              type="text"
+              id="modelInput"
             />
           </div>
-          {yearError && <p className={style.errorMessage}>{yearError}</p>}
-        </div>
-        <div className={style.inputColor}>
-          <label className={style.label}>Колір</label>
-          <Input
-            className={style.colorBtn}
-            name="color"
-            onChange={(event) => {
-              setColor(event.target.value);
-            }}
-            value={color}
-            type="radio"
-            id="colorInput"
-          />
+          <div className={style.rangeGroup}>
+            <label className={style.label}>Ціна</label>
+            <div className={style.doubleInput}>
+              <Input
+                className={style.rangeInput}
+                name="minPrice"
+                placeholder="Від"
+                onChange={(event) => {
+                  setMinPrice(event.target.value);
+                }}
+                value={minPrice}
+                type="number"
+                id="minPriceInput"
+              />
+              <span>-</span>
+              <Input
+                className={style.rangeInput}
+                name="maxPrice"
+                placeholder="До"
+                onChange={(event) => {
+                  setMaxPrice(event.target.value);
+                }}
+                value={maxPrice}
+                type="number"
+                id="maxPriceInput"
+              />
+            </div>
+            {priceError && <p className={style.errorMessage}>{priceError}</p>}
+          </div>
+          <div className={style.rangeGroup}>
+            <label className={style.label}> Рік</label>
+            <div className={style.doubleInput}>
+              <Input
+                className={style.rangeInput}
+                name="minYear"
+                placeholder="Від"
+                onChange={(event) => {
+                  setMinYear(event.target.value);
+                }}
+                value={minYear}
+                type="number"
+                id="minYearInput"
+              />
+              <span>-</span>
+              <Input
+                className={style.rangeInput}
+                name="maxYear"
+                placeholder="До"
+                onChange={(event) => {
+                  setMaxYear(event.target.value);
+                }}
+                value={maxYear}
+                type="number"
+                id="maxYearInput"
+              />
+            </div>
+            {yearError && <p className={style.errorMessage}>{yearError}</p>}
+          </div>
+          <div>
+            <p className={style.label}>Колір</p>
+            <ul className={style.colorCheckboxList}>
+              <li>
+                <ColorCheckbox />
+              </li>
+            </ul>
+          </div>
         </div>
         <div className={style.buttons}>
           <button

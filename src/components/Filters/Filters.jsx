@@ -66,7 +66,7 @@ const Filters = ({ setCars }) => {
     setCars(cars);
   };
   return (
-    <div>
+    <div className={style.filtersWrapper}>
       <h2 className={style.headerText}>Фільтри</h2>
 
       <form onSubmit={handleSubmit} className={style.filtersForm}>

@@ -67,80 +67,117 @@ const Filters = ({ setCars }) => {
       <h2 className={style.headerText}>Фільтри</h2>
       {error && <p className={style.errorMessage}>{error}</p>}
       <form onSubmit={handleSubmit} className={style.filtersForm}>
-        <Input
-          name="brand"
-          onChange={(event) => {
-            setBrandValue(event.target.value);
-          }}
-          value={brandValue}
-          label="brand"
-          type="text"
-          id="brandInput"
-        />
-        <Input
-          name="model"
-          onChange={(event) => {
-            setModelValue(event.target.value);
-          }}
-          value={modelValue}
-          label="model"
-          type="text"
-          id="modelInput"
-        />
-        <Input
-          name="minPrice"
-          onChange={(event) => {
-            setMinPrice(event.target.value);
-          }}
-          value={minPrice}
-          label="Price"
-          type="number"
-          id="minPriceInput"
-        />
-        <Input
-          name="maxPrice"
-          onChange={(event) => {
-            setMaxPrice(event.target.value);
-          }}
-          value={maxPrice}
-          label="max.price"
-          type="number"
-          id="maxPriceInput"
-        />
-        <Input
-          name="minYear"
-          onChange={(event) => {
-            setMinYear(event.target.value);
-          }}
-          value={minYear}
-          label="Year"
-          type="number"
-          id="minYearInput"
-        />
-        <Input
-          name="maxYear"
-          onChange={(event) => {
-            setMaxYear(event.target.value);
-          }}
-          value={maxYear}
-          label="Year"
-          type="number"
-          id="maxYearInput"
-        />
-        <Input
-          name="color"
-          onChange={(event) => {
-            setColor(event.target.value);
-          }}
-          value={color}
-          label="color"
-          type="text"
-          id="colorInput"
-        />
-        <button type="button" onClick={handleReset}>
-          Скинути
-        </button>
-        <button type="submit">Застосувати</button>
+        <div className={style.inputGroup}>
+          <label className={style.label}>Ім'я</label>
+          <Input
+            className={style.input}
+            name="brand"
+            placeholder="Ваше ім'я"
+            onChange={(event) => {
+              setBrandValue(event.target.value);
+            }}
+            value={brandValue}
+            type="text"
+            id="brandInput"
+          />
+        </div>
+        <div className={style.inputGroup}>
+          <label className={style.label}>Модель</label>
+          <Input
+            className={style.input}
+            name="model"
+            placeholder="Camry"
+            onChange={(event) => {
+              setModelValue(event.target.value);
+            }}
+            value={modelValue}
+            type="text"
+            id="modelInput"
+          />
+        </div>
+
+        <div className={style.rangeGroup}>
+          <label className={style.label}>Ціна</label>
+          <div className={style.doubleInput}>
+            <Input
+              className={style.rangeInput}
+              name="minPrice"
+              placeholder="Від"
+              onChange={(event) => {
+                setMinPrice(event.target.value);
+              }}
+              value={minPrice}
+              type="number"
+              id="minPriceInput"
+            />
+            <span>-</span>
+            <Input
+              className={style.rangeInput}
+              name="maxPrice"
+              placeholder="До"
+              onChange={(event) => {
+                setMaxPrice(event.target.value);
+              }}
+              value={maxPrice}
+              type="number"
+              id="maxPriceInput"
+            />
+          </div>
+        </div>
+
+        <div className={style.rangeGroup}>
+          <label className={style.label}> Рік</label>
+          <div className={style.doubleInput}>
+            <Input
+              className={style.rangeInput}
+              name="minYear"
+              placeholder="Від"
+              onChange={(event) => {
+                setMinYear(event.target.value);
+              }}
+              value={minYear}
+              type="number"
+              id="minYearInput"
+            />
+            <span>-</span>
+            <Input
+              className={style.rangeInput}
+              name="maxYear"
+              placeholder="До"
+              onChange={(event) => {
+                setMaxYear(event.target.value);
+              }}
+              value={maxYear}
+              type="number"
+              id="maxYearInput"
+            />
+          </div>
+        </div>
+        <div className={style.inputGroup}>
+          <label className={style.label}>Колір</label>
+          <Input
+            className={style.input}
+            name="color"
+            onChange={(event) => {
+              setColor(event.target.value);
+            }}
+            value={color}
+            type="text"
+            id="colorInput"
+          />
+        </div>
+        <div className={style.buttons}>
+          <button
+            className={style.resetBtn}
+            type="button"
+            onClick={handleReset}
+          >
+            Скинути
+          </button>
+          <button className={style.applyBtn} type="submit">
+            Застосувати
+          </button>
+        </div>
       </form>
     </div>
   );

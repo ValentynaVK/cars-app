@@ -12,8 +12,19 @@ const Filters = ({ setCars }) => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [priceError, setPriceError] = useState("");
-  const [yearError, setYearError] = useState("");
+
   const [selectedColors, setSelectedColors] = useState([]);
+  const [yearError, setYearError] = useState("");
+
+  const [formState, setFormState] = useState({
+    brandValue: "",
+    modelValue: "",
+    minYear: "",
+    maxYear: "",
+    minPrice: "",
+    maxPrice: "",
+    selectedColors: [],
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -125,6 +125,7 @@ input::-webkit-inner-spin-button {
 .colorCheckboxList {
   display: flex;
   height: 57px;
+  gap: 4px;
   align-items: center;
   margin: 0;
 }

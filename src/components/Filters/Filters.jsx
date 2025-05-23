@@ -11,9 +11,9 @@ const Filters = ({ setCars }) => {
   const [maxYear, setMaxYear] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [color, setColor] = useState("");
   const [priceError, setPriceError] = useState("");
   const [yearError, setYearError] = useState("");
+  const [selectedColors, setSelectedColors] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,7 +47,12 @@ const Filters = ({ setCars }) => {
         (!maxPrice || car.price <= parseInt(maxPrice));
 
       const colorMatch =
-        !color || car.features.colorOptions.includes(color.toLowerCase());
+        selectedColors.length === 0 ||
+        selectedColors.some((selectedColor) =>
+          car.features.colorOptions.some(
+            (carColor) => carColor.toLowerCase() === selectedColor.toLowerCase()
+          )
+        );
 
       return brandMatch && modelMatch && yearMatch && priceMatch && colorMatch;
     });
@@ -61,11 +66,35 @@ const Filters = ({ setCars }) => {
     setMaxYear("");
     setMinPrice("");
     setMaxPrice("");
-    setColor("");
     setPriceError("");
     setYearError("");
+    setSelectedColors([]);
+
     setCars(cars);
   };
+
+  const toggleColor = (color) => {
+    setSelectedColors((prevColors) =>
+      prevColors.includes(color)
+        ? prevColors.filter((c) => c !== color)
+        : [...prevColors, color]
+    );
+  };
+
+  const filteredByBrandModel = cars.filter((car) => {
+    const brandMatch = car.brand
+      .toLowerCase()
+      .includes(brandValue.toLowerCase());
+    const modelMatch = car.model
+      .toLowerCase()
+      .includes(modelValue.toLowerCase());
+    return brandMatch && modelMatch;
+  });
+
+  const uniqueColors = Array.from(
+    new Set(filteredByBrandModel.flatMap((car) => car.features.colorOptions))
+  );
+
   return (
     <div className={style.filtersWrapper}>
       <h2 className={style.headerText}>Фільтри</h2>
@@ -161,9 +190,15 @@ const Filters = ({ setCars }) => {
           <div>
             <p className={style.label}>Колір</p>
             <ul className={style.colorCheckboxList}>
-              <li>
-                <ColorCheckbox />
-              </li>
+              {uniqueColors.map((color) => (
+                <li key={color}>
+                  <ColorCheckbox
+                    color={color}
+                    checked={selectedColors.includes(color)}
+                    onChange={toggleColor}
+                  />
+                </li>
+              ))}
             </ul>
           </div>
         </div>

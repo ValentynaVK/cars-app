@@ -5,20 +5,9 @@ import style from "./Filters.module.css";
 import ColorCheckbox from "./ColorCheckbox/ColorCheckbox";
 
 const Filters = ({ setCars }) => {
-  const [brandValue, setBrandValue] = useState("");
-  const [modelValue, setModelValue] = useState("");
-  const [minYear, setMinYear] = useState("");
-  const [maxYear, setMaxYear] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [priceError, setPriceError] = useState("");
-
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [yearError, setYearError] = useState("");
-
   const [formState, setFormState] = useState({
-    brandValue: "",
-    modelValue: "",
+    brand: "",
+    model: "",
     minYear: "",
     maxYear: "",
     minPrice: "",
@@ -26,8 +15,34 @@ const Filters = ({ setCars }) => {
     selectedColors: [],
   });
 
+  const [priceError, setPriceError] = useState("");
+  const [yearError, setYearError] = useState("");
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const toggleColor = (color) => {
+    setFormState((prev) => ({
+      ...prev,
+      selectedColors: prev.selectedColors.includes(color)
+        ? prev.selectedColors.filter((c) => c !== color)
+        : [...prev.selectedColors, color],
+    }));
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const {
+      brand,
+      model,
+      minYear,
+      maxYear,
+      minPrice,
+      maxPrice,
+      selectedColors,
+    } = formState;
 
     if (minYear && maxYear && parseInt(minYear) > parseInt(maxYear)) {
       setYearError("Неправильний діапазон дат.");
@@ -42,12 +57,8 @@ const Filters = ({ setCars }) => {
     setYearError("");
 
     const filtered = cars.filter((car) => {
-      const brandMatch = car.brand
-        .toLowerCase()
-        .includes(brandValue.toLowerCase());
-      const modelMatch = car.model
-        .toLowerCase()
-        .includes(modelValue.toLowerCase());
+      const brandMatch = car.brand.toLowerCase().includes(brand.toLowerCase());
+      const modelMatch = car.model.toLowerCase().includes(model.toLowerCase());
 
       const yearMatch =
         (!minYear || car.year >= parseInt(minYear)) &&
@@ -71,34 +82,27 @@ const Filters = ({ setCars }) => {
   };
 
   const handleReset = () => {
-    setBrandValue("");
-    setModelValue("");
-    setMinYear("");
-    setMaxYear("");
-    setMinPrice("");
-    setMaxPrice("");
+    setFormState({
+      brand: "",
+      model: "",
+      minYear: "",
+      maxYear: "",
+      minPrice: "",
+      maxPrice: "",
+      selectedColors: [],
+    });
     setPriceError("");
     setYearError("");
-    setSelectedColors([]);
-
     setCars(cars);
-  };
-
-  const toggleColor = (color) => {
-    setSelectedColors((prevColors) =>
-      prevColors.includes(color)
-        ? prevColors.filter((c) => c !== color)
-        : [...prevColors, color]
-    );
   };
 
   const filteredByBrandModel = cars.filter((car) => {
     const brandMatch = car.brand
       .toLowerCase()
-      .includes(brandValue.toLowerCase());
+      .includes(formState.brand.toLowerCase());
     const modelMatch = car.model
       .toLowerCase()
-      .includes(modelValue.toLowerCase());
+      .includes(formState.model.toLowerCase());
     return brandMatch && modelMatch;
   });
 
@@ -118,10 +122,8 @@ const Filters = ({ setCars }) => {
               className={style.input}
               name="brand"
               placeholder="Ваше ім'я"
-              onChange={(event) => {
-                setBrandValue(event.target.value);
-              }}
-              value={brandValue}
+              onChange={handleChange}
+              value={formState.brand}
               type="text"
               id="brandInput"
             />
@@ -132,10 +134,8 @@ const Filters = ({ setCars }) => {
               className={style.input}
               name="model"
               placeholder="Camry"
-              onChange={(event) => {
-                setModelValue(event.target.value);
-              }}
-              value={modelValue}
+              onChange={handleChange}
+              value={formState.model}
               type="text"
               id="modelInput"
             />
@@ -147,10 +147,8 @@ const Filters = ({ setCars }) => {
                 className={style.rangeInput}
                 name="minPrice"
                 placeholder="Від"
-                onChange={(event) => {
-                  setMinPrice(event.target.value);
-                }}
-                value={minPrice}
+                onChange={handleChange}
+                value={formState.minPrice}
                 type="number"
                 id="minPriceInput"
               />
@@ -159,10 +157,8 @@ const Filters = ({ setCars }) => {
                 className={style.rangeInput}
                 name="maxPrice"
                 placeholder="До"
-                onChange={(event) => {
-                  setMaxPrice(event.target.value);
-                }}
-                value={maxPrice}
+                onChange={handleChange}
+                value={formState.maxPrice}
                 type="number"
                 id="maxPriceInput"
               />
@@ -176,10 +172,8 @@ const Filters = ({ setCars }) => {
                 className={style.rangeInput}
                 name="minYear"
                 placeholder="Від"
-                onChange={(event) => {
-                  setMinYear(event.target.value);
-                }}
-                value={minYear}
+                onChange={handleChange}
+                value={formState.minYear}
                 type="number"
                 id="minYearInput"
               />
@@ -188,10 +182,8 @@ const Filters = ({ setCars }) => {
                 className={style.rangeInput}
                 name="maxYear"
                 placeholder="До"
-                onChange={(event) => {
-                  setMaxYear(event.target.value);
-                }}
-                value={maxYear}
+                onChange={handleChange}
+                value={formState.maxYear}
                 type="number"
                 id="maxYearInput"
               />
@@ -205,7 +197,7 @@ const Filters = ({ setCars }) => {
                 <li key={color}>
                   <ColorCheckbox
                     color={color}
-                    checked={selectedColors.includes(color)}
+                    checked={formState.selectedColors.includes(color)}
                     onChange={toggleColor}
                   />
                 </li>

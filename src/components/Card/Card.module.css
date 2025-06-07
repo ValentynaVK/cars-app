@@ -2,6 +2,7 @@
   padding: 28px;
   border-radius: 8px;
   border: 1px solid #334155;
+  position: relative;
 }
 .title {
   color: #1d2b3c;
@@ -60,5 +61,4 @@
 }
 
 .imageWrapper {
- 
 }

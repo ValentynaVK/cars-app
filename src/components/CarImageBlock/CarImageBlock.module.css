@@ -5,7 +5,10 @@
   overflow: hidden;
 }
 .carImage {
-  fill: var(--car-color, #dcdcdc);
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  fill: #dcdcdc;
   width: 40%;
   max-width: 100%;
   height: auto;

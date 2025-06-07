@@ -1,10 +1,13 @@
-.carImageWrapper{
-    text-align: right;
+.carImageWrapper {
+  display: flex;
+  justify-content: flex-end;
+  height: auto;
+  overflow: hidden;
 }
-.carImage{
-    width: 70%;
-    
-
-    
-
+.carImage {
+  fill: var(--car-color, #dcdcdc);
+  width: 40%;
+  max-width: 100%;
+  height: auto;
+  transition: fill 0.3s ease;
 }

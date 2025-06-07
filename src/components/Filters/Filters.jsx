@@ -4,7 +4,7 @@ import cars from "../../data/cars";
 import style from "./Filters.module.css";
 import ColorCheckbox from "./ColorCheckbox/ColorCheckbox";
 
-const Filters = ({ setCars }) => {
+const Filters = ({ setCars, setSelectedColor }) => {
   const [formState, setFormState] = useState({
     brand: "",
     model: "",
@@ -24,13 +24,27 @@ const Filters = ({ setCars }) => {
   };
 
   const toggleColor = (color) => {
-    setFormState((prev) => ({
-      ...prev,
-      selectedColors: prev.selectedColors.includes(color)
-        ? prev.selectedColors.filter((c) => c !== color)
-        : [...prev.selectedColors, color],
-    }));
+    setFormState((prev) => {
+      const alreadySelected = prev.selectedColors.includes(color);
+      let newSelectedColors;
+
+      if (alreadySelected) {
+        newSelectedColors = prev.selectedColors.filter((c) => c !== color);
+      } else {
+        newSelectedColors = [...prev.selectedColors, color];
+      }
+
+      setSelectedColor(
+        newSelectedColors.length > 0 ? newSelectedColors.at(-1) : ""
+      );
+
+      return {
+        ...prev,
+        selectedColors: newSelectedColors,
+      };
+    });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -91,6 +105,7 @@ const Filters = ({ setCars }) => {
       maxPrice: "",
       selectedColors: [],
     });
+    setSelectedColor("");
     setPriceError("");
     setYearError("");
     setCars(cars);

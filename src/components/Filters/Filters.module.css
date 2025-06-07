@@ -129,3 +129,7 @@ input::-webkit-inner-spin-button {
   align-items: center;
   margin: 0;
 }
+.carImageWrapper {
+  display: flex;
+  align-items: center;
+}

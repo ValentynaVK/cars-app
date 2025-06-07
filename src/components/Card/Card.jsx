@@ -3,8 +3,11 @@ import cars from "../../data/cars";
 import CarsList from "./CarsList/CarsList";
 import { useState } from "react";
 import Filters from "../Filters/Filters";
+import CarImageBlock from "../CarImageBlock/CarImageBlock";
 
 const Card = () => {
+  const [color, setSelectedColor] = useState("");
+
   const [sortedCars, setSortedCars] = useState(cars);
   const [isSorted, setIsSorted] = useState(false);
   const sortCarsByAsc = ({ cars }) => {
@@ -28,7 +31,10 @@ const Card = () => {
         <p className={style.label}>В наявності</p>
         <p className={style.available}>{cars.length} автомобілів</p>
       </div>
-      <Filters setCars={setSortedCars} />
+      <div className={style.imageWrapper}>
+        <CarImageBlock color={color} />
+      </div>
+      <Filters setCars={setSortedCars} setSelectedColor={setSelectedColor} />
       <div className={style.sortBtnsWrapper}>
         <button
           className={style.sortBtn}

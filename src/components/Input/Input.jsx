@@ -2,6 +2,7 @@ import React from "react";
 
 const Input = ({
   label,
+  name,
   type,
   id,
   value,
@@ -14,6 +15,7 @@ const Input = ({
       <label htmlFor={id}>{label} </label>
       <input
         id={id}
+        name={name}
         type={type}
         value={value}
         onChange={onChange}
